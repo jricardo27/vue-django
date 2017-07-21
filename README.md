@@ -3,11 +3,11 @@
 
 > A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction integrated into a django application
 
-[![Code Climate](https://codeclimate.com/github/NdagiStanley/vue-django/badges/gpa.svg)](https://codeclimate.com/github/NdagiStanley/vue-django)
-<a href="https://codeclimate.com/github/NdagiStanley/vue-django"><img src="https://codeclimate.com/github/NdagiStanley/vue-django/badges/issue_count.svg" /></a>
+[![Code Climate](https://codeclimate.com/github/jricardo27/vue-django/badges/gpa.svg)](https://codeclimate.com/github/jricardo27/vue-django)
+<a href="https://codeclimate.com/github/jricardo27/vue-django"><img src="https://codeclimate.com/github/jricardo27/vue-django/badges/issue_count.svg" /></a>
 
-[![Updates](https://pyup.io/repos/github/NdagiStanley/vue-django/shield.svg)](https://pyup.io/repos/github/NdagiStanley/vue-django/)
-[![Python 3](https://pyup.io/repos/github/NdagiStanley/vue-django/python-3-shield.svg)](https://pyup.io/repos/github/NdagiStanley/vue-django/)
+[![Updates](https://pyup.io/repos/github/jricardo27/vue-django/shield.svg)](https://pyup.io/repos/github/jricardo27/vue-django/)
+[![Python 3](https://pyup.io/repos/github/jricardo27/vue-django/python-3-shield.svg)](https://pyup.io/repos/github/jricardo27/vue-django/)
 
 
 ## Version Notice
@@ -27,7 +27,7 @@ $ npm install -g vue-cli
 ```
 You might want to use ```sudo``` if you encounter permissions error
 ```bash
-$ vue init NdagiStanley/vue-django my-project
+$ vue init jricardo27/vue-django my-project
 $ cd my-project
 $ npm install
 ```

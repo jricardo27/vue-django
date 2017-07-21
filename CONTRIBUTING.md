@@ -4,7 +4,7 @@ If you would like to contribute to this repository, please first fork the repo, 
 
 To ensure you'll be working on the right feature in the right way,
 
-- Understand how we project manage by reading the [README](https://github.com/NdagiStanley/vue-django)
+- Understand how we project manage by reading the [README](https://github.com/jricardo27/vue-django)
 
 ### Branch Naming
 
@@ -15,7 +15,7 @@ The default branches provided by git flow are:
 
 Always work off of `develop` and NOT `master`.
 
-We use either `dist` or `master` to create the template from vue-cli. The versioning section in the README [here](https://github.com/NdagiStanley/vue-django/blob/master/README.md#version-notice) explains more.
+We use either `dist` or `master` to create the template from vue-cli. The versioning section in the README [here](https://github.com/jricardo27/vue-django/blob/master/README.md#version-notice) explains more.
 
 ## Pull Request Process
 
@@ -23,7 +23,7 @@ We use either `dist` or `master` to create the template from vue-cli. The versio
 2. Update the README.md with details of changes to the interface/ process, this includes new environment variables, exposed ports, useful file locations and container parameters.
 3. Increase the version numbers in any examples files and the README.md to the new version that this
    Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
-4. We may merge the Pull Request in once we have the sign-off of two other developers or [the repo owner](https://github.com/NdagiStanley).
+4. We may merge the Pull Request in once we have the sign-off of two other developers or [the repo owner](https://github.com/jricardo27).
 
 
 ## Ideas/ Requests/ Suggestions
