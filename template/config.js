@@ -3,7 +3,7 @@ var path = require('path')
 
 module.exports = {
   build: {
-    index: path.resolve(__dirname, 'templates/index.html'),
+    index: path.resolve(__dirname, 'app/templates/base.html'),
     assetsRoot: path.resolve(__dirname, 'static'),
     assetsSubDirectory: '/',
     assetsPublicPath: '/',

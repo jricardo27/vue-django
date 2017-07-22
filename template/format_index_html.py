@@ -1,7 +1,7 @@
 import sys
 import fileinput
 
-file = 'templates/index.html'
+file = 'app/templates/base.html'
 
 with open(file, "r+") as f:
     s = f.read()
