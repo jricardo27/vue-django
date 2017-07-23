@@ -29,7 +29,6 @@ JS_KARMA_SOURCES = [
 
 # Parent directory/ies where Javascript files are located.
 JS_SOURCES = [
-    '.eslintrc.js',
     'build',
     'config.js',
     'src',
@@ -214,7 +213,7 @@ def javascript_linter():
         print(" ... No sources given, skipping.")
         return SUCCESSFUL_EXIT
 
-    return call(['eslint', '--ext .js,.vue'] + JS_SOURCES, env=ENV_VARIABLES)
+    return call(['eslint', '--ext', '.js,.vue'] + JS_SOURCES, env=ENV_VARIABLES)
 
 
 def sass_linter():

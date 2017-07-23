@@ -3,12 +3,19 @@
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
 
-let path = require('path');
-let merge = require('webpack-merge');
-let baseConfig = require('../../build/webpack.base.conf');
-let projectRoot = path.resolve(__dirname, '../../');
+/**
+ * This file is processed by Karma and doesn't support ES6, disable eslint rules
+ * related to it.
+ */
+/* eslint-disable no-var */
 
-let webpackConfig = merge(baseConfig, {
+
+var path = require('path');
+var merge = require('webpack-merge');
+var baseConfig = require('../../build/webpack.base.conf');
+var projectRoot = path.resolve(__dirname, '../../');
+
+var webpackConfig = merge(baseConfig, {
     // use inline sourcemap for karma-sourcemap-loader
     devtool: '#inline-source-map',
     vue: {
