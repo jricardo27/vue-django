@@ -1,7 +1,8 @@
-let path = require('path');
-let config = require('../config');
-let cssLoaders = require('./css-loaders');
-let projectRoot = path.resolve(__dirname, '../');
+/* eslint-disable no-var */
+var path = require('path');
+var config = require('../config');
+var cssLoaders = require('./css-loaders');
+var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
     entry: {

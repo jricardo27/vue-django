@@ -76,6 +76,6 @@ module.exports = {
         // Enforces that a return statement is present in computed property.
         'vue/return-in-computed-property': ['error', {
             treatUndefinedAsUnspecified: true
-        }],
+        }]
     }
 };

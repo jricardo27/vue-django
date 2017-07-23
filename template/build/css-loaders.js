@@ -1,11 +1,12 @@
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+/* eslint-disable no-var */
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function (options) {
     options = options || {};
     // generate loader string to be used with extract text plugin
     function generateLoaders (loaders) {
-        let sourceLoader = loaders.map(function (loader) {
-            let extraParamChar;
+        var sourceLoader = loaders.map(function (loader) {
+            var extraParamChar;
             if (/\?/.test(loader)) {
                 loader = loader.replace(/\?/, '-loader?');
                 extraParamChar = '&';

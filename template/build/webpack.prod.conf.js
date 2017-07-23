@@ -1,11 +1,12 @@
-let path = require('path');
-let config = require('../config');
-let webpack = require('webpack');
-let merge = require('webpack-merge');
-let baseWebpackConfig = require('./webpack.base.conf');
-let cssLoaders = require('./css-loaders');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+/* eslint-disable no-var */
+var path = require('path');
+var config = require('../config');
+var webpack = require('webpack');
+var merge = require('webpack-merge');
+var baseWebpackConfig = require('./webpack.base.conf');
+var cssLoaders = require('./css-loaders');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? '#source-map' : false,

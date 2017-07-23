@@ -1,7 +1,8 @@
-let webpack = require('webpack');
-let merge = require('webpack-merge');
-let baseWebpackConfig = require('./webpack.base.conf');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+/* eslint-disable no-var */
+var webpack = require('webpack');
+var merge = require('webpack-merge');
+var baseWebpackConfig = require('./webpack.base.conf');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
