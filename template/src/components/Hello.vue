@@ -14,9 +14,9 @@ export default {
             // preserves its current state and we are modifying
             // its initial state.
             msg: 'Hello World!'
-        }
+        };
     }
-}
+};
 </script>
 
 
