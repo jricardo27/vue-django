@@ -1,7 +1,7 @@
-var path = require('path')
-var config = require('../config')
-var cssLoaders = require('./css-loaders')
-var projectRoot = path.resolve(__dirname, '../')
+let path = require('path');
+let config = require('../config');
+let cssLoaders = require('./css-loaders');
+let projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
     entry: {
@@ -74,4 +74,4 @@ module.exports = {
     eslint: {
         formatter: require('eslint-friendly-formatter')
     }
-}
+};
