@@ -7,15 +7,15 @@
   "private": true,
   {{/private}}
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "unit": "karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "dev": "node ui/build/dev-server.js",
+    "start": "node ui/build/dev-server.js",
+    "build": "node ui/build/build.js",
+    "unit": "./ui/scripts/npm/unit.sh",
+    "test": "npm run unit",
+    "lint": "./ui/scripts/npm/es_lint.sh"
   },
   "dependencies": {
-    "vue": "1.0.21",
-    "babel-runtime": "6.0.0"
+    "vue": "2.3.4",
   },
   "devDependencies": {
     "autoprefixer": "7.1.2",
@@ -90,5 +90,14 @@
     "webpack-dev-middleware": "1.12.0",
     "webpack-hot-middleware": "2.18.2",
     "webpack-merge": "4.1.0"
-  }
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
