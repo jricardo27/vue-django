@@ -1,0 +1,6 @@
+-r _base.txt
+-r _code_quality.txt
+-r _tests.txt
+
+ipdb==0.10.3
+ipython==4.2.0
