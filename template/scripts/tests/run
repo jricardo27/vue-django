@@ -14,8 +14,8 @@ from subprocess import call
 PYTHON_SOURCES = [
     'app',
     'manage.py',
-    'runtests',
     'vuedj',
+    'scripts/tests/run'
 ]
 
 # Parent directory/ies where tests are located.
