@@ -5,7 +5,7 @@ var UI_DIR_NAME = 'ui';
 
 module.exports = {
     common: {
-        base_dir: UI_DIR_NAME,
+        base_dir: '',
         entry: {
             base: './src/entries/base.js',
         },

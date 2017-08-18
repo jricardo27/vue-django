@@ -8,3 +8,6 @@
  */
 
 import g from '../js/global';
+
+
+g.init();
