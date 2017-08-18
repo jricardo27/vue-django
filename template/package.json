@@ -3,9 +3,7 @@
   "version": "{{ version }}",
   "description": "{{ description }}",
   "author": "{{ author }}",
-  {{#private}}
   "private": true,
-  {{/private}}
   "scripts": {
     "dev": "node ui/build/dev-server.js",
     "start": "node ui/build/dev-server.js",
@@ -15,7 +13,7 @@
     "lint": "./ui/scripts/npm/es_lint.sh"
   },
   "dependencies": {
-    "vue": "2.3.4",
+    "vue": "2.3.4"
   },
   "devDependencies": {
     "autoprefixer": "7.1.2",
