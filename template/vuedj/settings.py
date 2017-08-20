@@ -30,13 +30,16 @@ env = environ.Env(  # pylint: disable=invalid-name
     ALLOWED_HOSTS=list,
     EMAIL_FROM=str,
     EMAIL_DESTINATARIES=list,
-    STATIC_DIRNAME=(str, 'staticfiles'),
-    STATIC_ROOT=(str, PROJECT_CONTAINER.child('staticfiles')),
+    STATIC_DIRNAME=(str, 'static'),
+    STATIC_ROOT=(str, PROJECT_ROOT.child('staticfiles')),
     COMMIT=(str, None),
     DEPLOY_VERSION=(str, None),
     DJANGO_LOG_LEVEL=(str, 'INFO'),
     SENTRY_DSN=(str, None),
     GOOGLE_API_KEY=(str, None),
+    WEBPACK_DEV_SERVER_URL=(str, None),
+    UI_ROOT=(str, 'ui'),
+    USE_WEBPACK_DEV_SERVER=(bool, False),
 )
 
 # ----------------------------------------------------------
@@ -59,6 +62,26 @@ DEBUG = env.bool('DEBUG')
 # ----------------------------------------------------------
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+
+
+# ----------------------------------------------------------
+# Webpack Configuration
+# ----------------------------------------------------------
+
+# Flag to serve the resources from webpack-dev-server.
+if DEBUG:
+    USE_WEBPACK_DEV_SERVER = env.bool('USE_WEBPACK_DEV_SERVER')
+else:
+    USE_WEBPACK_DEV_SERVER = False
+
+# Webpack dev server serving js, css etc.
+WEBPACK_DEV_SERVER_URL = env('WEBPACK_DEV_SERVER_URL')
+
+# Subdirectory name in webpack public path.
+UI_ROOT = env('UI_ROOT')
+
+# The build path of javascript project.
+UI_BUILD_PATH = REPOSITORY_ROOT.child(UI_ROOT).child('dist')
 
 
 # ----------------------------------------------------------
@@ -186,8 +209,7 @@ USE_TZ = True
 # ----------------------------------------------------------
 
 STATICFILES_DIRS = [
-    PROJECT_ROOT.child(app_name).child(env('STATIC_DIRNAME'))
-    for app_name in PROJECT_APPS
+    (UI_ROOT, UI_BUILD_PATH),
 ]
 
 # Where files are being served from.
