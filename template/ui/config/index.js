@@ -12,7 +12,6 @@ module.exports = {
     },
     build: {
         env: require('./prod.env'),
-        index: path.resolve(__dirname, '../dist/index.html'),
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: '',
         assetsPublicPath: '/static/' + UI_DIR_NAME + '/',  // Must end with a slash.
