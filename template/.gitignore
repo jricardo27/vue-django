@@ -20,6 +20,7 @@ python_env/
 
 # collect static output directory
 dist/
+static_root/
 
 # node
 node_modules/

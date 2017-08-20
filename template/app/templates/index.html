@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
+{% load webpack %}
 
 
 {% block content %}
-    <app></app>
-    <!-- built files will be auto injected -->
+    <div id="vueApp">
+        <hello></hello>
+        <hello-you></hello-you>
+    </div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script src="{% webpack_static 'js/landing.js' %}"></script>
 {% endblock %}

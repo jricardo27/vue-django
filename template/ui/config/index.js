@@ -8,6 +8,7 @@ module.exports = {
         base_dir: '',
         entry: {
             base: './src/entries/base.js',
+            landing: './src/entries/landing.js',
         },
     },
     build: {
