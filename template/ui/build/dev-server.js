@@ -44,6 +44,22 @@ compiler.plugin('compilation', function (compilation) {
     });
 });
 
+// Print errors on compilation.
+compiler.plugin('done', function (stats) {
+    if (stats.compilation.errors && stats.compilation.errors.length &&
+            process.argv.indexOf("--watch") === -1) {
+        var errors = stats.compilation.errors;
+
+        if (Array.isArray(errors)) {
+            errors.forEach(error => {
+                console.error(error);
+            });
+        } else {
+            console.error(errors);
+        }
+    }
+});
+
 app.use(cors());
 
 // Proxy api requests.
