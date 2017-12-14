@@ -2,7 +2,7 @@
  * A Vue component to say "Hello {{ Your-Name }}"
  */
 
-let _template = `
+const _template = `
     <div>
         <p>What's your name:</p>
         <input v-model="name">
@@ -12,7 +12,7 @@ let _template = `
 `;
 
 
-let HelloYou = {
+const HelloYou = {
     template: _template,
     data () {
         return {

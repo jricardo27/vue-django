@@ -20,7 +20,7 @@ module.exports = {
             }
 
             return utils
-                .webpackCompilerTask(webpackConfig, "Prod Build")
+                .webpackCompilerTask(webpackConfig, 'Prod Build')
                 .then(resolve, reject);
         });
     }),

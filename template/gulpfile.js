@@ -4,18 +4,18 @@ var exec = require('child_process').execSync;
 var minimist = require('minimist');
 var del = require('del');
 
-var destination_dir = 'ui/static';
+var destinationDir = 'ui/static';
 var pythonScript = 'scripts/tests/run';
 
 /**
  * Configuration variables as passed in from the command line
  */
 var config = minimist(process.argv.slice(2), {
-    string: ["django-host"],
+    string: ['django-host'],
     default: {
-        "django-host": "0.0.0.0",
-        "django-port": 9000
-    }
+        'django-host': '0.0.0.0',
+        'django-port': 9000,
+    },
 });
 
 /**
@@ -26,11 +26,11 @@ var config = minimist(process.argv.slice(2), {
  * @returns {Function} - The task function
  */
 
-function shellTask (name, command, args){
+function shellTask (name, command, args) {
     return function () {
         var promise = new Promise(function (resolve, reject) { // eslint-disable-line no-undef
             var taskProcess = spawn(command, args, {stdio: 'inherit'});
-            taskProcess.on('close', function (code){
+            taskProcess.on('close', function (code) {
                 if (code !== 0) {
                     reject(name + ' exited with error code: ' + code);
                 } else {
@@ -56,7 +56,7 @@ gulp.task('run-django-dev-server', shellTask(
  * Remove build directories
  */
 gulp.task('clean', function () {
-    return del([destination_dir]);
+    return del([destinationDir]);
 });
 
 /**

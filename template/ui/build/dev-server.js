@@ -28,12 +28,12 @@ var cors = require('cors');
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    quiet: true
+    quiet: true,
 });
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
     log: () => {},
-    heartbeat: 2000
+    heartbeat: 2000,
 });
 
 // Force page reload when html-webpack-plugin template changes.
@@ -47,7 +47,7 @@ compiler.plugin('compilation', function (compilation) {
 // Print errors on compilation.
 compiler.plugin('done', function (stats) {
     if (stats.compilation.errors && stats.compilation.errors.length &&
-            process.argv.indexOf("--watch") === -1) {
+            process.argv.indexOf('--watch') === -1) {
         var errors = stats.compilation.errors;
 
         if (Array.isArray(errors)) {
@@ -112,5 +112,5 @@ module.exports = {
     ready: readyPromise,
     close: () => {
         server.close();
-    }
+    },
 };

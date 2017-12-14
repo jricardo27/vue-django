@@ -3,8 +3,8 @@ import Hello from '../vue/Hello.vue';
 import HelloYou from '../js/vue/hello-you';
 
 
-new Vue({
-    el: "#vueApp",
+new Vue({  // eslint-disable-line no-new
+    el: '#vueApp',
     components: {
         Hello,
         HelloYou,

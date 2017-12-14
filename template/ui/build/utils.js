@@ -19,19 +19,19 @@ exports.cssLoaders = function (options) {
         loader: 'css-loader',
         options: {
             minimize: process.env.NODE_ENV === 'production',
-            sourceMap: options.sourceMap
-        }
+            sourceMap: options.sourceMap,
+        },
     };
 
     // Generate loader string to be used with extract text plugin.
-    function generateLoaders(loader, loaderOptions) {
+    function generateLoaders (loader, loaderOptions) {
         var loaders = [cssLoader];
         if (loader) {
             loaders.push({
                 loader: loader + '-loader',
                 options: Object.assign({}, loaderOptions, {
-                    sourceMap: options.sourceMap
-                })
+                    sourceMap: options.sourceMap,
+                }),
             });
         }
 
@@ -40,7 +40,7 @@ exports.cssLoaders = function (options) {
         if (options.extract) {
             return ExtractTextPlugin.extract({
                 use: loaders,
-                fallback: 'vue-style-loader'
+                fallback: 'vue-style-loader',
             });
         } else {
             return ['vue-style-loader'].concat(loaders);
@@ -55,7 +55,7 @@ exports.cssLoaders = function (options) {
         sass: generateLoaders('sass', {indentedSyntax: true}),
         scss: generateLoaders('sass'),
         stylus: generateLoaders('stylus'),
-        styl: generateLoaders('stylus')
+        styl: generateLoaders('stylus'),
     };
 };
 
@@ -67,13 +67,13 @@ exports.styleLoaders = function (options) {
         var loader = loaders[extension];
         output.push({
             test: new RegExp('\\.' + extension + '$'),
-            use: loader
+            use: loader,
         });
     }
     return output;
 };
 
-function printStats(stats, options) {
+function printStats (stats, options) {
     process.stdout.write(stats.toString(options) + '\n\n');
 }
 
@@ -93,7 +93,7 @@ exports.webpackCompilerTask = function (webpackConfig, taskName) {
                     modules: false,
                     children: false,
                     chunks: false,
-                    chunkModules: false
+                    chunkModules: false,
                 });
 
                 console.log(chalk.cyan(`Webpack ${taskName} complete.\n`));
