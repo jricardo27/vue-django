@@ -1,4 +1,6 @@
 # Unit test / coverage reports
+coverage/
+ui_coverage/
 .coverage
 .coverage.*
 all_coverage.txt
@@ -25,6 +27,7 @@ static_root/
 # node
 node_modules/
 npm-debug.log
+package-lock.json
 
 # Test screenshots.
 failed_*.html
