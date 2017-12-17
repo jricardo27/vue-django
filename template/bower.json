@@ -1,0 +1,23 @@
+{
+  "name": "{{ name }}",
+  "description": "{{ description }}",
+  "main": "index.js",
+  "authors": [],
+  "license": "UNLICENSED",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "metisMenu": "2.0.2",
+    "PACE": "pace#1.0.0",
+    "slimScroll": "1.3.6",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}
