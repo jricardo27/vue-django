@@ -1,0 +1,27 @@
+language: python
+python:
+  - "3.6"
+services:
+  - postgresql
+cache:
+  directories:
+    - "node_modules"
+    - $HOME/.cache/pip
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install
+  - pip install -r requirements/dev.txt
+  - pip install coveralls
+  - pip install codeclimate-test-reporter
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp .env.travis .env
+# command to run tests
+script: ./runtests --linters --unittest
+after_success:
+  - coveralls --rcfile=.coveragerc
+  - codeclimate-test-reporter
