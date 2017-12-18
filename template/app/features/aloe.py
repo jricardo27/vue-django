@@ -1,7 +1,7 @@
 """Aloe configuration."""
 
-from django.conf import settings
 from aloe_django import TestCase as AloeDjangoTestCase  # pylint: disable=ungrouped-imports
+from django.conf import settings
 
 
 class TestCase(AloeDjangoTestCase):

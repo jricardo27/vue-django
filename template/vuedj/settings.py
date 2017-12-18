@@ -1,11 +1,10 @@
 """Django settings for {{ name }} project."""
 
 import os
-import textwrap
 import sys
+import textwrap
 
 import environ
-
 from unipath import Path
 
 
