@@ -74,6 +74,7 @@ LINTERS_MAPPING = {
     'static': 'static_analysis',
     'js': 'javascript_linter',
     'sass': 'sass_linter',
+    'isort': 'isort_linter',
 }
 
 
@@ -86,12 +87,12 @@ def parse_args():
     parser.add_argument('--all', action='store_true', help='Execute all tests')
     parser.add_argument(
         '--linters',
-        choices=['all', 'style', 'static', 'js', 'sass'],
+        choices=['all', 'style', 'static', 'js', 'sass', 'isort'],
         nargs='*',
         default=argparse.SUPPRESS,
         help=(
             'Execute linters [pycodestyle (style), pylint (static),'
-            ' eslint (js), sasslint (sass)]'
+            ' eslint (js), sasslint (sass), isort (Python Imports sorted)]'
         ),
     )
     parser.add_argument(
@@ -233,6 +234,21 @@ def sass_linter():
     ]
 
     return call(command, env=ENV_VARIABLES)
+
+
+def isort_linter():
+    """Lint Python imports."""
+
+    print("\nisort")
+    linters_output = call(
+        ['isort', '-rc', '--check-only'] + PYTHON_SOURCES,
+        env=ENV_VARIABLES,
+    )
+
+    if linters_output != 0:
+        call(['isort', '-rc', '--diff'] + PYTHON_SOURCES)
+
+    return linters_output
 
 
 def unittest():
