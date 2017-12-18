@@ -25,7 +25,7 @@ TEST_SOURCES = [
 ]
 
 JS_KARMA_SOURCES = [
-    'test/unit/karma.conf.js',
+    'ui/test/unit/karma.conf.js',
 ]
 
 # Parent directory/ies where Javascript files are located.
