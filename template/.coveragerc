@@ -1,0 +1,16 @@
+[run]
+omit =
+  */migrations/*
+  */python?.?/*
+  python_env/*
+  /System/*
+  /usr/*
+plugins =
+  django_coverage_plugin
+[report]
+exclude_lines =
+  pragma: no cover
+  def __repr__
+  raise AssertionError
+  raise NotImplementedError
+  if __name__ == .__main__.:
