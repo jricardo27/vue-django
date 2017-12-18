@@ -75,6 +75,7 @@
     "phantomjs-prebuilt": "2.1.14",
     "resolve-url-loader": "2.1.0",
     "rimraf": "2.6.1",
+    "sass-lint": "1.12.1",
     "sass-loader": "6.0.6",
     "script-loader": "0.7.0",
     "semver": "5.4.1",
