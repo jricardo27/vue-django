@@ -7,10 +7,10 @@
     "private": true,
     {{/private}}
     "scripts": {
-        "dev": "node build/dev-server.js",
-        "build": "node build/build.js",
-        "unit": "karma start test/unit/karma.conf.js --single-run",
-        "e2e": "node test/e2e/runner.js",
+        "dev": "node ui/build/dev-server.js",
+        "build": "node ui/build/build.js",
+        "unit": "karma start ui/test/unit/karma.conf.js --single-run",
+        "e2e": "node ui/test/e2e/runner.js",
         "test": "npm run unit && npm run e2e"
     },
     "dependencies": {
