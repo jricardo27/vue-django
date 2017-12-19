@@ -14,7 +14,7 @@ from subprocess import call
 PYTHON_SOURCES = [
     'app',
     'manage.py',
-    'runtests',
+    'scripts/tests/run',
     'vuedj',
 ]
 
