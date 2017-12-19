@@ -1,9 +1,16 @@
+import Vue from 'vue';
+
+Vue.config.productionTip = false;
+
 // require all test files (files that ends with .spec.js)
-let testsContext = require.context('./specs', true, /\.spec$/);
+const testsContext = require.context('./specs', true, /\.spec$/);
 testsContext.keys().forEach(testsContext);
 
 // require all src files except main.js for coverage.
 // you can also change this to match only the subset of files that
 // you want coverage for.
-let srcContext = require.context('../../src', true, /^\.\/(?!main(\.js)?$)/);
+const srcContext = require.context('../../src/js', true, /^\.js$/);
 srcContext.keys().forEach(srcContext);
+
+const entriesContext = require.context('../../src/entries', true, /^\.js$/);
+entriesContext.keys().forEach(entriesContext);

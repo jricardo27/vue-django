@@ -1,2 +1,4 @@
 node_modules
 python_env
+static_root
+ui/bower_components

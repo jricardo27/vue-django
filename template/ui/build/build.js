@@ -1,37 +1,27 @@
-/* eslint-env shelljs */
+require('./check-versions')();
 
-// https://github.com/shelljs/shelljs
-require('shelljs/global');
-env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production';
 
-let path = require('path');
-let config = require('../config');
-let ora = require('ora');
-let webpack = require('webpack');
-let webpackConfig = require('./webpack.prod.conf');
+var rm = require('rimraf');
+var path = require('path');
+var chalk = require('chalk');
+var config = require('../config');
+var webpackConfig = require('./webpack.prod.conf');
+var utils = require('./utils');
 
-console.log(  // eslint-disable-line no-console
-    '  Tip:\n' +
-    '  Built files are meant to be served over an HTTP server.\n' +
-    '  Opening index.html over file:// won\'t work.\n'
-);
+module.exports = {
+    ready: new Promise((resolve, reject) => {
+        var destinationDir = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
 
-let spinner = ora('building for production...');
-spinner.start();
+        rm(destinationDir, err => {
+            if (err) {
+                reject(chalk.red('Error clearing the directory.' + destinationDir + '\n'));
+                return;
+            }
 
-let assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
-rm('-rf', assetsPath);
-mkdir('-p', assetsPath);
-cp('-R', 'static/', assetsPath);
-
-webpack(webpackConfig, function (err, stats) {
-    spinner.stop();
-    if (err) throw err;
-    process.stdout.write(stats.toString({
-        colors: true,
-        modules: false,
-        children: false,
-        chunks: false,
-        chunkModules: false
-    }) + '\n');
-});
+            return utils
+                .webpackCompilerTask(webpackConfig, 'Prod Build')
+                .then(resolve, reject);
+        });
+    }),
+};
