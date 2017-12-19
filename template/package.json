@@ -3,9 +3,7 @@
     "version": "{{ version }}",
     "description": "{{ description }}",
     "author": "{{ author }}",
-    {{#private}}
     "private": true,
-    {{/private}}
     "scripts": {
         "dev": "node ui/build/dev-server.js",
         "build": "node ui/build/build.js",
