@@ -10,7 +10,7 @@
         "build": "node ui/build/build.js",
         "unit": "./ui/scripts/npm/unit.sh",
         "test": "npm run unit",
-        "lint": "./ui/scripts/npm/es_lint.sh"
+        "lint": "./ui/scripts/npm/lint.sh"
     },
     "dependencies": {
         "babel-polyfill": "6.23.0",
@@ -79,6 +79,7 @@
         "phantomjs-prebuilt": "2.1.14",
         "resolve-url-loader": "2.1.0",
         "rimraf": "2.6.1",
+        "sass-lint": "1.12.1",
         "sass-loader": "6.0.6",
         "script-loader": "0.7.0",
         "semver": "5.4.1",

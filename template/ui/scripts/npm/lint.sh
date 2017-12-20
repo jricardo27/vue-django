@@ -11,3 +11,5 @@ eslint \
     --format 'node_modules/eslint-friendly-formatter' \
     --ext ${EXTENSIONS} \
     ${TARGET_FILES} $@
+
+sass-lint --verbose --no-exit

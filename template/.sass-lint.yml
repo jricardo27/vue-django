@@ -10,9 +10,10 @@ options:
   max-warnings: 50
 # File Options
 files:
-  include: 'sass/**/*.s+(a|c)ss'
+  include: '**/s+(a|c)ss/**/*.s+(a|c)ss'
   ignore:
     - 'node_modules/**/*.*'
+    - 'ui/bower_components/**/*.*'
 # Rule Configuration
 rules:
   extends-before-mixins: 2

@@ -32,9 +32,6 @@ JS_SOURCES = [
     '.'
 ]
 
-# Parent directory/ies where Javascript files are located.
-SASS_SOURCES = ['**/*.scss']
-
 
 ##############################################################################
 SUCCESSFUL_EXIT = 0
@@ -218,18 +215,13 @@ def sass_linter():
 
     print("\nSASS lint")
 
-    if not SASS_SOURCES:
-        print(" ... No sources given, skipping.")
-        return SUCCESSFUL_EXIT
-
     command = [
         'sass-lint',
-        ', '.join(SASS_SOURCES),
         '--verbose',
         '--no-exit',
     ]
 
-    return call(command, env=ENV_VARIABLES)
+    return call(command)
 
 
 def unittest():
