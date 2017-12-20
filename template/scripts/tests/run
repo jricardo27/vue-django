@@ -143,6 +143,9 @@ def main():
     # Reset coverage report.
     call([COVERAGE, 'erase'])
 
+    # Run coverage report only if tests are run.
+    do_coverage_report = False
+
     if args.all or 'linters' in args:
         if process_linter_argument(args) != SUCCESSFUL_EXIT:
             exit(1)
@@ -155,6 +158,8 @@ def main():
         if TEST_SOURCES:
             shutil.move('.coverage', PYTEST_COVERAGE)
 
+        do_coverage_report = True
+
     if args.all or args.harvest:
         harvest_status = harvest(args.test_label, args.scenario_indices)
 
@@ -164,7 +169,9 @@ def main():
         # Move coverage file.
         shutil.move('.coverage', HARVEST_COVERAGE)
 
-    if call([COVERAGE, 'combine']) == SUCCESSFUL_EXIT:
+        do_coverage_report = True
+
+    if do_coverage_report and call([COVERAGE, 'combine']) == SUCCESSFUL_EXIT:
         # Run coverage report.
         call([COVERAGE, 'html'])
         call([COVERAGE, 'report'])
