@@ -29,10 +29,7 @@ JS_KARMA_SOURCES = [
 
 # Parent directory/ies where Javascript files are located.
 JS_SOURCES = [
-    'build',
-    'config.js',
-    'src',
-    'test',
+    '.'
 ]
 
 # Parent directory/ies where Javascript files are located.
