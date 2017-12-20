@@ -176,7 +176,7 @@ def process_linter_argument(args):
     result = 0
     linters_to_run = LINTERS_MAPPING.keys()
 
-    if hasattr(args, 'linters') and 'all' not in args.linters:
+    if hasattr(args, 'linters') and 'all' not in args.linters and args.linters:
         linters_to_run = args.linters
 
     for linter_name in linters_to_run:
