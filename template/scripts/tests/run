@@ -277,7 +277,14 @@ def pytest():
 def karma():
     """Execute unit test for Javascript with Karma."""
 
+    print('\nRunning tests on Javascript using Karma.')
+
     result = 0
+    # Clone dictionary of environment variables to avoid modifying original.
+    env_variables = dict(ENV_VARIABLES)
+    env_variables.update({
+        'BABEL_ENV': 'test',
+    })
 
     for conf in JS_KARMA_SOURCES:
         result += call(
@@ -287,7 +294,7 @@ def karma():
                 conf,
                 '--single-run'
             ],
-            env=ENV_VARIABLES,
+            env=env_variables,
         )
 
     return result
