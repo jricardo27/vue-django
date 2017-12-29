@@ -16,7 +16,6 @@ PYTHON_SOURCES = [
     'app',
     'manage.py',
     'scripts/tests/run',
-    'vuedj',
 ]
 
 # Parent directory/ies where tests are located.

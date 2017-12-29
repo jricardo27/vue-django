@@ -101,7 +101,7 @@ INSTALLED_APPS = [
 ]
 
 PROJECT_APPS = [
-    'app',
+    'app.base.apps.BaseConfig',
 ]
 
 TESTING_APPS = [
@@ -126,7 +126,7 @@ MIDDLEWARE_CLASSES = [
 ]
 # pylint:enable=line-too-long
 
-ROOT_URLCONF = 'vuedj.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -148,7 +148,7 @@ TEMPLATES = [
 ]
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'vuedj.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # ----------------------------------------------------------
