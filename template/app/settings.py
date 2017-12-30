@@ -169,6 +169,11 @@ CACHES = {
 }
 
 
+# ----------------------------------------------------------
+# Authentication/Authorization
+# ----------------------------------------------------------
+AUTH_USER_MODEL = 'base.AppUser'
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 # pylint:disable=line-too-long
