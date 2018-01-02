@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load webpack %}
+
+
+{% block content %}
+    <div id="vueApp">
+        <hello></hello>
+
+        <h2>Welcome to your Django - Vue.js App!</h2>
+        <img src="{% webpack_static 'img/dj.png' %}" height="20">
+        <img src="{% webpack_static 'img/vue.png' %}" height="20">
+
+        <hello-you></hello-you>
+    </div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+    <script src="{% webpack_static 'js/landing.js' %}"></script>
+{% endblock %}

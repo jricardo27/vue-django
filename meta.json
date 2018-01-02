@@ -20,10 +20,6 @@
     "author": {
       "type": "string",
       "label": "Author"
-    },
-    "private": {
-      "type": "boolean",
-      "default": true
     }
   }
 }

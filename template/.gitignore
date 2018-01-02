@@ -1,7 +1,32 @@
-.DS_Store
-node_modules/
-dist/
-npm-debug.log
+# Unit test / coverage reports
+ui_coverage/
+.coverage
+.coverage.*
+all_coverage.txt
+htmlcov
+.tox
+.cache
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
+
+# Sphinx
+docs/_build
+
+# Virtualenv
+python_env/
+
+# 12 Factor configuration.
+.env
+
+# collect static output directory
+static_root/
+ui/dist/
+
+# node
+node_modules/
+npm-debug.log
+
+# Test screenshots.
+failed_*.html
+failed_*.png

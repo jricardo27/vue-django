@@ -1,0 +1,323 @@
+#!/usr/bin/env python3
+"""Run a battery of tests over the application."""
+
+import argparse
+import os
+import shutil
+import sys
+from subprocess import call
+
+
+##############################################################################
+# Configuration
+##############################################################################
+# Parent directory/ies where Python files are located.
+PYTHON_SOURCES = [
+    'app',
+    'manage.py',
+    'scripts/tests/run',
+]
+
+# Parent directory/ies where tests are located.
+TEST_SOURCES = [
+    'app/tests.py',
+]
+
+JS_KARMA_SOURCES = [
+    'ui/test/unit/karma.conf.js',
+]
+
+# Parent directory/ies where Javascript files are located.
+JS_SOURCES = [
+    '.'
+]
+
+
+##############################################################################
+SUCCESSFUL_EXIT = 0
+NPM_BINARIES = 'node_modules/.bin/'
+PATH = os.environ['PATH']
+
+if NPM_BINARIES not in PATH:
+    PATH = '{npm_binaries}:{path}'.format(
+        npm_binaries=NPM_BINARIES,
+        path=os.environ['PATH'],
+    )
+
+ENV_VARIABLES = os.environ.copy()
+
+ENV_VARIABLES.update({
+    'BROWSER_TYPE': os.environ.get('BROWSER_TYPE', 'chrome'),
+    'PATH': PATH,
+    'TERM': 'linux',
+    'TERMINFO': '/etc/terminfo',
+})
+
+VIRTUAL_ENV_DIR = os.environ.get('VIRTUAL_ENV', '')
+if VIRTUAL_ENV_DIR:
+    VIRTUAL_ENV_DIR = os.path.join(VIRTUAL_ENV_DIR, 'bin/')
+
+COVERAGE = os.path.join(VIRTUAL_ENV_DIR, 'coverage')
+HARVEST_COMMAND = [COVERAGE, 'run', 'manage.py', 'harvest', '-v', '3']
+
+PYTEST_COVERAGE = '.coverage.pytest'
+HARVEST_COVERAGE = '.coverage.harvest'
+
+LINTERS_MAPPING = {
+    'style': 'style_linter',
+    'static': 'static_analysis',
+    'js': 'javascript_linter',
+    'sass': 'sass_linter',
+    'isort': 'isort_linter',
+}
+
+
+def parse_args():
+    """Parse arguments from command line."""
+
+    parser = argparse.ArgumentParser(
+        description='Run a battery of tests over the application.',
+    )
+    parser.add_argument('--all', action='store_true', help='Execute all tests')
+    parser.add_argument(
+        '--linters',
+        choices=['all', 'style', 'static', 'js', 'sass', 'isort'],
+        nargs='*',
+        default=argparse.SUPPRESS,
+        help=(
+            'Execute linters [pycodestyle (style), pylint (static),'
+            ' eslint (js), sasslint (sass), isort (Python Imports sorted)]'
+        ),
+    )
+    parser.add_argument(
+        '--harvest',
+        action='store_true',
+        help='Execute Aloe harvest',
+    )
+    parser.add_argument(
+        '--unittest',
+        action='store_true',
+        help='Execute unit tests',
+    )
+
+    parser.add_argument(
+        '-n', '--scenario-indices',
+        dest='scenario_indices',
+        help=(
+            'Only run scenarios with these indices (comma-separated). Only'
+            ' valid when running Aloe harvest'
+        ),
+    )
+    parser.add_argument(
+        'test_label',
+        nargs='*',
+        default='',
+        help='Path to tests. Only valid when running Aloe harvest',
+    )
+
+    args = parser.parse_args()
+
+    # Inform about invalid combinations.
+    if not args.harvest:
+        if args.test_label:
+            print("Path to tests is only valid when running harvest.")
+            exit(1)
+        if args.scenario_indices:
+            print("Scenario indices are only valid when running harvest.")
+            exit(1)
+
+    if not len(sys.argv) > 1:
+        # Execute all when no parameters are given or when explicitly asked for
+        # it.
+        args.all = True
+
+    return args
+
+
+def main():
+    """Main method."""
+
+    args = parse_args()
+
+    # Reset coverage report.
+    call([COVERAGE, 'erase'])
+
+    # Run coverage report only if tests are run.
+    do_coverage_report = False
+
+    if args.all or 'linters' in args:
+        if process_linter_argument(args) != SUCCESSFUL_EXIT:
+            exit(1)
+
+    if args.all or args.unittest:
+        if unittest() != SUCCESSFUL_EXIT:
+            exit(1)
+
+        # Move coverage file.
+        if TEST_SOURCES:
+            shutil.move('.coverage', PYTEST_COVERAGE)
+
+        do_coverage_report = True
+
+    if args.all or args.harvest:
+        harvest_status = harvest(args.test_label, args.scenario_indices)
+
+        if harvest_status != SUCCESSFUL_EXIT:
+            exit(1)
+
+        # Move coverage file.
+        shutil.move('.coverage', HARVEST_COVERAGE)
+
+        do_coverage_report = True
+
+    if do_coverage_report and call([COVERAGE, 'combine']) == SUCCESSFUL_EXIT:
+        # Run coverage report.
+        call([COVERAGE, 'html'])
+        call([COVERAGE, 'report'])
+
+
+def process_linter_argument(args):
+    """Process `--linters` argument."""
+
+    result = 0
+    linters_to_run = LINTERS_MAPPING.keys()
+
+    if hasattr(args, 'linters') and 'all' not in args.linters and args.linters:
+        linters_to_run = args.linters
+
+    for linter_name in linters_to_run:
+        func_name = LINTERS_MAPPING[linter_name]
+        result += globals()[func_name]()
+
+    return result
+
+
+def style_linter():
+    """Execute pycodestyle."""
+
+    print("\nPycodestyle")
+    return call(['pycodestyle'] + PYTHON_SOURCES)
+
+
+def static_analysis():
+    """Execute pylint."""
+
+    print("\nPylint")
+    return call(['pylint'] + PYTHON_SOURCES)
+
+
+def javascript_linter():
+    """Execute eslint."""
+
+    print("\nJsLint")
+
+    if not JS_SOURCES:
+        print(" ... No sources given, skipping.")
+        return SUCCESSFUL_EXIT
+
+    return call(['eslint', '--ext', '.js,.vue'] + JS_SOURCES, env=ENV_VARIABLES)
+
+
+def sass_linter():
+    """Execute sass-lint."""
+
+    print("\nSASS lint")
+
+    command = [
+        'sass-lint',
+        '--verbose',
+        '--no-exit',
+    ]
+
+    return call(command)
+
+
+def isort_linter():
+    """Lint Python imports."""
+
+    print("\nisort")
+    linters_output = call(
+        ['isort', '-rc', '--check-only'] + PYTHON_SOURCES,
+        env=ENV_VARIABLES,
+    )
+
+    if linters_output != 0:
+        call(['isort', '-rc', '--diff'] + PYTHON_SOURCES)
+
+    return linters_output
+
+
+def unittest():
+    """Execute unit tests."""
+
+    print("\nUnit testing")
+
+    return pytest() + karma()
+
+
+def pytest():
+    """Run unit tests for Python with Pytest."""
+
+    if not TEST_SOURCES:
+        print(" ... No tests paths given, skipping.")
+        return SUCCESSFUL_EXIT
+
+    command = [os.path.join(VIRTUAL_ENV_DIR, 'pytest')]
+    command.extend(TEST_SOURCES)
+    command.extend([
+        '--cov=.',
+        '--cov-report=',
+        '--cov-append',
+    ])
+
+    return call(command, env=ENV_VARIABLES)
+
+
+def karma():
+    """Execute unit test for Javascript with Karma."""
+
+    print('\nRunning tests on Javascript using Karma.')
+
+    result = 0
+    # Clone dictionary of environment variables to avoid modifying original.
+    env_variables = dict(ENV_VARIABLES)
+    env_variables.update({
+        'BABEL_ENV': 'test',
+    })
+
+    for conf in JS_KARMA_SOURCES:
+        result += call(
+            [
+                'karma',
+                'start',
+                conf,
+                '--single-run'
+            ],
+            env=env_variables,
+        )
+
+    return result
+
+
+def harvest(test_labels=None, scenario_indices=None):
+    """Execute Selenium tests."""
+
+    print("\nHarvesting running browser in local machine.")
+
+    command = HARVEST_COMMAND
+    # Clone dictionary of environment variables to avoid modifying original.
+    env_variables = dict(ENV_VARIABLES)
+    env_variables.update({
+        'BABEL_ENV': 'prod',
+    })
+
+    if test_labels:
+        command.extend(test_labels)
+    if scenario_indices:
+        command.extend(['--scenario-indices', scenario_indices])
+
+    return call(command, env=env_variables)
+
+
+if __name__ == "__main__":
+    main()

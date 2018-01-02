@@ -1,4 +1,29 @@
-node_modules
-.DS_Store
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.cache
+package-lock.json
+node_modules/
+python_env/
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+all_coverage.txt
+htmlcov/
+
+# Django stuff:
+.env
+*.log
+
+# Sphinx documentation
+docs/_build/
 docs/_book
-.vscode
+

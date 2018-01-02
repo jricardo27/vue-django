@@ -77,11 +77,6 @@ Then get to [localhost:8000](http://localhost:8000/). You should have a page exa
   - Supports all webpack loaders.
   - Easy mock injection.
 
-- `npm run e2e`: End-to-end tests with [Nightwatch](http://nightwatchjs.org/).
-  - Run tests in multiple browsers in parallel.
-  - Works with one command out of the box:
-    - Selenium and chromedriver dependencies automatically handled.
-    - Automatically spawns the Selenium server.
 
 ### Contributions
 

@@ -1,0 +1,7 @@
+htmlcov
+node_modules
+python_env
+static_root
+ui_coverage
+ui/bower_components
+ui/dist
