@@ -6,4 +6,4 @@ djangorestframework==3.7.7
 psycopg2==2.7.3.2
 raven==6.4.0
 Unipath==1.1
-whitenoise==3.3.0
+whitenoise==3.3.1
