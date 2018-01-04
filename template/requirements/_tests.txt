@@ -7,5 +7,5 @@ factory_boy==2.9.2
 pytest==3.3.1
 pytest-cov==2.5.1
 pytest-django==3.1.2
-selenium==3.4.3
+selenium==3.8.0
 xvfbwrapper==0.2.9
