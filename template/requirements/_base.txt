@@ -4,6 +4,6 @@ django-extensions==1.9.8
 django-model-utils==3.0.0
 djangorestframework==3.7.7
 psycopg2==2.7.3.2
-raven==6.1.0
+raven==6.4.0
 Unipath==1.1
 whitenoise==3.3.0
