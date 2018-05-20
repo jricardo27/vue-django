@@ -3,5 +3,5 @@
 astroid==1.6.4
 isort==4.3.4
 pycodestyle==2.4.0
-pylint==1.7.2
+pylint==1.9.1
 pylint-mccabe==0.1.3
