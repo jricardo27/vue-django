@@ -6,6 +6,6 @@ django_coverage_plugin==1.5.0
 factory_boy==2.11.1
 pytest==3.6.0
 pytest-cov==2.5.1
-pytest-django==3.1.2
+pytest-django==3.2.1
 selenium==3.4.3
 xvfbwrapper==0.2.9
