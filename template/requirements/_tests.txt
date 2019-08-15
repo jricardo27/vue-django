@@ -4,7 +4,7 @@ git+https://github.com/jricardo27/aloe_django@c757f8fe27b37756482f4de7ee246284c2
 
 aloe_webdriver==0.5.11
 coverage==4.5.4
-django_coverage_plugin==1.5.0
+django_coverage_plugin==1.6.0
 factory_boy==2.11.1
 pytest==3.6.0
 pytest-cov==2.5.1
