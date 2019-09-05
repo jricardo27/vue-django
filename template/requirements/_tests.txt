@@ -3,7 +3,7 @@ git+https://github.com/aloetesting/aloe.git@e8392800bce42faffd5e94ea358dbbb69b79
 git+https://github.com/jricardo27/aloe_django@c757f8fe27b37756482f4de7ee246284c294e550#egg=aloe_django
 
 aloe_webdriver==0.5.11
-coverage==4.5.1
+coverage==4.5.4
 django_coverage_plugin==1.5.0
 factory_boy==2.11.1
 pytest==3.6.0
