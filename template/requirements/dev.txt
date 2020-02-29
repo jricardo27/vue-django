@@ -3,4 +3,4 @@
 -r _tests.txt
 
 ipdb==0.13.1
-ipython==6.4.0
+ipython==7.13.0
