@@ -6,7 +6,7 @@ aloe_webdriver==0.6.0
 coverage==5.0.3
 django_coverage_plugin==1.8.0
 factory_boy==2.12.0
-pytest==3.6.0
+pytest==5.4.0
 pytest-cov==2.5.1
 pytest-django==3.3.0
 selenium==3.12.0
